@@ -7,17 +7,24 @@
 //
 
 import UIKit
-
+import ARKit
 class ViewController: UIViewController {
 
+    @IBOutlet weak var sceneView: ARSCNView!
+    
+    let configuration = ARWorldTrackingConfiguration()
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        self.sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints, ARSCNDebugOptions.showWorldOrigin]
+        self.sceneView.session.run(configuration)
+        
+       
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    override func viewDidAppear(_ animated: Bool) {
+        let earth = SCNNode()
+        earth.geometry = SCNSphere(radius: 0.2)
+        earth.geometry?.firstMaterial?.diffuse.contents = 
     }
 
 
